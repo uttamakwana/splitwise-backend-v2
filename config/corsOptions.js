@@ -1,9 +1,18 @@
-export const allowedOrigins = [
+// Define the allowed origins
+const allowedOrigins = [
   "https://splitwise-expense.netlify.app",
+  "https://splitwise-expense.netlify.app/home",
+  "https://splitwise-expense.netlify.app/register",
+  "https://splitwise-expense.netlify.app/all-users",
+  "https://splitwise-expense.netlify.app/request",
+  "https://splitwise-expense.netlify.app/transaction",
+  "https://splitwise-expense.netlify.app/friends",
+  "https://splitwise-expense.netlify.app/history",
   "http://localhost:5173",
 ];
 
-export const corsOptions = {
+// Set up CORS options
+const corsOptions = {
   origin: (origin, callback) => {
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
       callback(null, true);
@@ -11,6 +20,6 @@ export const corsOptions = {
       callback(new Error("Not allowed by CORS"));
     }
   },
-  credentials: true,
-  optionsSuccessStatus: 200,
+  credentials: true, // Enable credentials (e.g., cookies, authorization headers)
+  allowedHeaders: "Content-Type, Authorization", // Specify allowed headers
 };
