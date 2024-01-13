@@ -6,6 +6,7 @@ import friendRoutes from "./routes/friendRoutes.js";
 import transactionRoutes from "./routes/transactionRoutes.js";
 import connectDB from "./database/connectDB.js";
 import cors from "cors";
+import { corsOptions } from "./config/corsOptions.js";
 
 //* config
 //? Does: You can use environment variables
@@ -18,7 +19,7 @@ const PORT = process.env.PORT || 8080;
 
 //* middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 //* routes
 app.use("/users", userRoutes);
