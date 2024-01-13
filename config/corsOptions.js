@@ -1,5 +1,5 @@
 // Define the allowed origins
-const allowedOrigins = [
+export const allowedOrigins = [
   "https://splitwise-expense.netlify.app",
   "https://splitwise-expense.netlify.app/home",
   "https://splitwise-expense.netlify.app/register",
@@ -12,7 +12,7 @@ const allowedOrigins = [
 ];
 
 // Set up CORS options
-const corsOptions = {
+export const corsOptions = {
   origin: (origin, callback) => {
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
       callback(null, true);
