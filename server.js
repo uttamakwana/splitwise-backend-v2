@@ -19,7 +19,12 @@ const PORT = process.env.PORT || 8080;
 
 //* middleware
 app.use(express.json());
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: "https://splitwise-expense.netlify.app",
+    credentials: true,
+  })
+);
 
 //* routes
 app.use("/users", userRoutes);
