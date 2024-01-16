@@ -27,9 +27,10 @@ app.use(cookieParser());
 // Enable CORS with credentials and specify allowed methods
 app.use(
   cors({
-    origin: "*",
+    origin: "https://splitwise-expense.netlify.app",
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    exposedHeaders: ["set-cookie"],
   })
 );
 
