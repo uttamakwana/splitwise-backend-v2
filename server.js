@@ -1,4 +1,3 @@
-//* imports
 import express from "express";
 import dotenv from "dotenv";
 import userRoutes from "./routes/userRoutes.js";
@@ -6,29 +5,26 @@ import friendRoutes from "./routes/friendRoutes.js";
 import transactionRoutes from "./routes/transactionRoutes.js";
 import connectDB from "./database/connectDB.js";
 import cors from "cors";
-import { corsOptions } from "./config/corsOptions.js";
 import cookieParser from "cookie-parser";
 import "express-async-errors";
 
-//* config
-//? Does: You can use environment variables
+// Load environment variables
 dotenv.config();
+
+// Connect to the database
 connectDB();
 
-//* variables
+// Create an instance of Express
 const app = express();
+
+// Set the port
 const PORT = process.env.PORT || 8080;
 
-//* middleware
+// Apply middleware
 app.use(express.json());
 app.use(cookieParser());
-// app.use(
-//   cors({
-//     origin: "http://localhost:5173",
-//     credentials: true,
-//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//   })
-// );
+
+// Enable CORS with credentials and specify allowed methods
 app.use(
   cors({
     origin: "https://splitwise-expense.netlify.app",
@@ -37,12 +33,23 @@ app.use(
   })
 );
 
-//* routes
+// Define routes
 app.use("/users", userRoutes);
 app.use("/friends", friendRoutes);
 app.use("/transactions", transactionRoutes);
 
-//* methods
+// Handle 404 errors
+app.all("*", (req, res) => {
+  res.status(404).json({ message: "404 Not Found" });
+});
+
+// Handle asynchronous errors globally
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).json({ message: "Internal Server Error" });
+});
+
+// Start the server
 app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}!`);
+  console.log(`Server started on port ${PORT}`);
 });
