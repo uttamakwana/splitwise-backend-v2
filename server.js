@@ -30,7 +30,7 @@ app.use(
     origin: "https://splitwise-expense.netlify.app",
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    exposedHeaders: ["set-cookie"],
+    exposedHeaders: ["set-cookie", "Access-Control-Allow-Origin"],
   })
 );
 
