@@ -1,9 +1,8 @@
 import jwt from "jsonwebtoken";
 
 export const sendToken = (res, message, data) => {
-  const token = jwt.sign({ id: data._id }, "uttamakwana", {
-    expiresIn: "7d",
-  });
+  const secretKey = "defaultSecretKey";
+  const token = jwt.sign({ id: data._id }, secretKey, { expiresIn: "7d" });
 
   const options = {
     expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000),

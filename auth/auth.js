@@ -7,7 +7,7 @@ export const isAuth = async (req, res, next) => {
   const { token } = req.cookies;
   if (!token) return response(res, 400, { message: "Login first required!" });
 
-  const decodedData = jwt.verify(token, process.env.JWT_SECRET_KEY);
+  const decodedData = jwt.verify(token, "defaultSecretKey");
   req.user = await User.findById(decodedData.id);
   return next();
 };
