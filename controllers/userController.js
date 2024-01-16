@@ -2,6 +2,8 @@
 import { User } from "../models/User.js";
 import { response } from "../utils/response.js";
 import crypto from "crypto";
+import { sendToken } from "../utils/token.js";
+import bcrypt from "bcrypt";
 
 //* Controllers
 
@@ -24,9 +26,10 @@ export const registerUser = async (req, res) => {
 
   if (user) return response(res, 402, { message: "email already registered!" });
 
-  user = await User.create({ name, number, email, password });
+  const hashedPassword = await bcrypt.hash(password, 10);
 
-  return response(res, 200, { user, message: "User registration successful" });
+  user = await User.create({ name, number, email, password: hashedPassword });
+  sendToken(res, "Registration successfull!", user);
 };
 
 //? Description: Login User
@@ -39,16 +42,12 @@ export const loginUser = async (req, res) => {
   if (!user)
     return response(res, 404, { message: "email or password may be wrong!" });
 
-  const matchPassword = user.password === password;
+  const matchPassword = bcrypt.compare(user.password, password);
 
   if (!matchPassword)
     return response(res, 404, { message: "email or password may be wrong!" });
 
-  return response(res, 200, {
-    message: "Login Successfull",
-    token: crypto.randomBytes(64).toString("hex"),
-    user,
-  });
+  sendToken(res, "Login successfull!", user);
 };
 
 //? Description: Update an User

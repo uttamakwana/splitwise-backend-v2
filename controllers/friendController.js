@@ -97,6 +97,7 @@ export const denyFriendRequest = async (req, res) => {
 
   await user.save();
   return response(res, 200, {
+    success: true,
     user,
     message: "Friend request denied successfully!",
   });
