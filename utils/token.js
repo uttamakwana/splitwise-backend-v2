@@ -10,7 +10,9 @@ export const sendToken = (res, message, data) => {
       Date.now() + process.env.COOKIE_EXPIRE_TIME * 24 * 60 * 60 * 1000
     ),
     httpOnly: true,
-    domain: ".splitwise-expense.netlify.app", // Adjust the domain
+    domain: ".splitwise-expense.netlify.app",
+    sameSite: "None",
+    secure: true,
   };
 
   return res
