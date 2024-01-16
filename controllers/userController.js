@@ -69,6 +69,12 @@ export const updateUser = async (req, res, next) => {
 //? Route: GET /users
 //? Public
 export const getUserInfo = async (req, res, next) => {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://splitwise-expense.netlify.app"
+  );
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,PUT,PATCH,POST,DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
   const { id } = req.body;
   const user = await User.findById(id);
   if (!user) return response(res, 404, { message: "User not found!" });
