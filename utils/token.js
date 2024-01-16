@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 export const sendToken = (res, message, data) => {
-  const token = jwt.sign({ id: data._id }, "dfasdfasdfasdfa", {
+  const token = jwt.sign({ id: data._id }, "uttamakwana", {
     expiresIn: "7d",
   });
 
