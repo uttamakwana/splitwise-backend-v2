@@ -75,6 +75,7 @@ export const getUserInfo = async (req, res, next) => {
   );
   res.header("Access-Control-Allow-Methods", "GET,HEAD,PUT,PATCH,POST,DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.header("Access-Control-Allow-Credentials", "true");
   const { id } = req.body;
   const user = await User.findById(id);
   if (!user) return response(res, 404, { message: "User not found!" });
