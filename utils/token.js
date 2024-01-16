@@ -1,16 +1,13 @@
 import jwt from "jsonwebtoken";
 
 export const sendToken = (res, message, data) => {
-  const token = jwt.sign({ id: data._id }, process.env.JWT_SECRET_KEY, {
-    expiresIn: process.env.JWT_TOKEN_EXPIRATION,
+  const token = jwt.sign({ id: data._id }, "dfasdfasdfasdfa", {
+    expiresIn: "7d",
   });
 
   const options = {
-    expires: new Date(
-      Date.now() + process.env.COOKIE_EXPIRE_TIME * 24 * 60 * 60 * 1000
-    ),
+    expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000),
     httpOnly: true,
-    domain: ".splitwise-expense.netlify.app",
     sameSite: "None",
     secure: true,
   };
