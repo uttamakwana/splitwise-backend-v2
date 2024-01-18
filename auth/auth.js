@@ -11,3 +11,4 @@ export const isAuth = async (req, res, next) => {
   req.user = await User.findById(decodedData.id);
   return next();
 };
+
