@@ -5,6 +5,7 @@ import { User } from "../models/User.js";
 export const isAuth = async (req, res, next) => {
   // console.log(req);
   const { token } = req.cookies;
+  console.log(token);
   if (!token) return response(res, 400, { message: "Login first required!" });
 
   const decodedData = jwt.verify(token, "defaultSecretKey");

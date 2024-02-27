@@ -1,13 +1,5 @@
 // Define the allowed origins
 export const allowedOrigins = [
-  "https://splitwise-expense.netlify.app",
-  "https://splitwise-expense.netlify.app/home",
-  "https://splitwise-expense.netlify.app/register",
-  "https://splitwise-expense.netlify.app/all-users",
-  "https://splitwise-expense.netlify.app/request",
-  "https://splitwise-expense.netlify.app/transaction",
-  "https://splitwise-expense.netlify.app/friends",
-  "https://splitwise-expense.netlify.app/history",
   "http://localhost:5173",
 ];
 
