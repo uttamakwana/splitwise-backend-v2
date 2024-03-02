@@ -30,7 +30,7 @@ const corsOptions = {
   credentials: true,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 };
-app.use(cors(corsOptions));
+app.use(cors());
 
 // Apply middleware
 app.use(express.json());
